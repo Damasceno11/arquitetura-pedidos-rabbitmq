@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "pedidos")
+@Table(name = "tb_pedidos")
 @Getter
 @Setter
 @NoArgsConstructor
