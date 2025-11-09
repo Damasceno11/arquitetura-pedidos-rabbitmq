@@ -277,7 +277,7 @@ Durante o desenvolvimento, encontramos e solucionamos diversos problemas clássi
 
 ## 👨‍💻 Autor
 
-| [\<img src="https://avatars.githubusercontent.com/u/48593845?v=4" width="100px;"/\>](https://github.com/Damasceno11) |
+| [\<img src="https://avatars.githubusercontent.com/u/48593845?v=4" width="100px"/\>](https://github.com/Damasceno11) |
 | :---: |
 | **Pedro Paulo Damasceno Muniz** |
 | [GitHub](https://github.com/Damasceno11) • [LinkedIn](https://www.linkedin.com/in/pedro-damasceno-23b330150/) |
