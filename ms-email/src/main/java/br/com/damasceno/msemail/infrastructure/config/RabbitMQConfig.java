@@ -23,8 +23,8 @@ public class RabbitMQConfig {
     private String dlqName;
 
     @Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
+    public TopicExchange topicExchange() {
+        return new TopicExchange(exchangeName);
     }
 
     @Bean
@@ -33,6 +33,14 @@ public class RabbitMQConfig {
                 .withArgument("x-dead-letter-exchange", dlxName)
                 .withArgument("x-dead-letter-routing-key", routingKey)
                 .build();
+    }
+
+    @Bean
+    public Binding binding() {
+        return BindingBuilder
+                .bind(queue())
+                .to(topicExchange())
+                .with(routingKey);
     }
 
     @Bean
@@ -53,4 +61,8 @@ public class RabbitMQConfig {
                 .noargs();
     }
 
+    @Bean
+    public MessageConverter jsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
 }
