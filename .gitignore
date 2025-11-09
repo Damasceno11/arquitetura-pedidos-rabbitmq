@@ -1,0 +1,16 @@
+# Arquivos do IntelliJ
+.idea/
+*.iml
+
+# Arquivos de Build do Maven
+target/
+pom.xml.bak
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Logs e Arquivos de Build
+*.log
+*.jar
+*.war

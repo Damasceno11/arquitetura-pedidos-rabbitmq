@@ -1,0 +1,56 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: ms-email
+
+  # 1. Conexão com o RabbitMQ
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 3000ms
+          multiplier: 2
+        default-requeue-rejected: false
+
+  # 2. Configuração do Mailtrap (Substitua com suas credenciais)
+  mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: 094d0a3bace990
+    password: e93703514b2e70
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# 3. Nomes das filas e exchanges (para o @RabbitListener)
+rabbitmq:
+  exchange:
+    name: "pedidos.exchange"
+  queue:
+    name: "pedidos.v1.pedido-criado.ms-email"
+  routingkey:
+    name: "pedidos.v1.pedido-criado"
+
+  # Nomes da nossa infraestrutura de Dead Letter (Quarentena)
+  dlx:
+    name: "pedidos.exchange.dlx" # Dead Letter Exchange
+  dlq:
+    name: "pedidos.v1.pedido-criado.ms-email.dlq" # Dead Letter Queue
+
+# 4. Expor o Health Check do Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics"

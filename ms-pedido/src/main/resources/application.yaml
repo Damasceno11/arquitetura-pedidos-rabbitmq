@@ -8,8 +8,8 @@ spring:
   # 1. Configuração do Banco de Dados (Postgres)
   datasource:
     url: jdbc:postgresql://localhost:5432/ms_pedido_db
-    username: postgres # Conforme Etapa 1
-    password: postgres # Conforme Etapa 1
+    username: postgres
+    password: postgres
     driver-class-name: org.postgresql.Driver
 
   # 2. Configuração do JPA/Hibernate
@@ -28,12 +28,27 @@ spring:
     baseline-on-migrate: true
     locations: classpath:db/migration
 
-  # 4. Configuração do RabbitMQ
+  # 4. Configuração do RabbitMQ (CONEXÃO)
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
+    # Configurações opcionais de resiliência:
+    template:
+      retry:
+        enabled: true
+        initial-interval: 2s
+        max-attempts: 3
+
+# 5. Configurações Customizadas do RabbitMQ
+rabbitmq:
+  exchange:
+    name: "pedidos.exchange"
+  queue:
+    name: "pedidos.v1.pedido-criado.ms-email"
+  routingkey:
+    name: "pedidos.v1.pedido-criado"
 
 # Configuração da Documentação OpenAPI (Swagger)
 springdoc:

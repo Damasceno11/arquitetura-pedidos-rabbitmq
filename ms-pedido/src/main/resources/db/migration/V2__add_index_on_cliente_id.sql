@@ -1,0 +1,1 @@
+CREATE INDEX idx_pedido_cliente ON tb_pedidos(cliente_id);
